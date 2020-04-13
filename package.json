@@ -1,0 +1,112 @@
+{
+  "name": "ebnis",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@apollo/react-hooks": "^3.1.4",
+    "@fortawesome/fontawesome-free": "^5.13.0",
+    "@kanmii/socket": "^0.2.2",
+    "@kanmii/socket-apollo-link": "^0.2.3",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "@types/jest": "^24.0.0",
+    "@types/node": "^12.0.0",
+    "@types/react": "^16.9.0",
+    "@types/react-dom": "^16.9.0",
+    "apollo-cache-inmemory": "^1.6.5",
+    "apollo-cache-persist": "^0.1.1",
+    "apollo-client": "^2.6.8",
+    "apollo-link": "^1.2.14",
+    "apollo-link-error": "^1.1.13",
+    "apollo-link-http": "^1.5.17",
+    "bulma": "^0.8.2",
+    "classnames": "^2.2.6",
+    "date-fns": "^2.12.0",
+    "fuzzysort": "^1.1.4",
+    "graphql": "^15.0.0",
+    "graphql-tag": "^2.10.3",
+    "immer": "^6.0.3",
+    "lodash": "^4.17.15",
+    "phoenix": "^1.4.16",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "3.4.1",
+    "typescript": "~3.7.2",
+    "zen-observable-ts": "^0.8.21"
+  },
+  "scripts": {
+    "eject": "react-scripts eject",
+    "dev": "env-cmd -e dev react-scripts start",
+    "e2e": "env-cmd -e e2e-dev react-scripts start",
+    "build": "react-scripts build",
+    "build:p": "env-cmd -e prod yarn build",
+    "build:e2e": "env-cmd -e e2e yarn build",
+    "build:local:staging": "env-cmd -e local-staging yarn build",
+    "build-serve:e2e": "yarn build:e2e && yarn serve-local",
+    "build:serve:local-staging": "yarn build:local:staging && yarn serve-local",
+    "test": "env-cmd -e test react-scripts test",
+    "test:c": "env-cmd -e test react-scripts test --coverage",
+    "gen-apollo-types-e": "env-cmd -e e2e node fetch-graphql-types.js",
+    "gen-apollo-types-d": "env-cmd -e dev node fetch-graphql-types.js",
+    "serve-local": "serve -s build -l 3022",
+    "build-deploy-staging": "yarn build:p && yarn deploy-staging",
+    "build-deploy-prod": "yarn build:p && yarn deploy-prod",
+    "cy-open": "env-cmd -e e2e-dev cypress open",
+    "cy-run-task": "env-cmd -e e2e cypress run",
+    "cy-run": "start-server-and-test serve-local :3022 cy-run-task",
+    "build-cy-run": "start-server-and-test build-serve:e2e :3022 cy-run-task",
+    "type-check": "yarn tsc --noEmit --project .",
+    "type-check-cypress": "yarn tsc --noEmit --project ./cypress",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@cypress/webpack-preprocessor": "^5.1.2",
+    "@types/classnames": "^2.2.10",
+    "@types/phoenix": "^1.4.4",
+    "@types/react-router-dom": "^5.1.4",
+    "apollo": "^2.27.0",
+    "cypress": "^4.3.0",
+    "env-cmd": "^10.1.0",
+    "less": "^3.11.1",
+    "node-fetch": "^2.6.0",
+    "node-sass": "^4.13.1",
+    "rimraf": "^3.0.2",
+    "start-server-and-test": "^1.10.11"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.ts*",
+      "!src/__tests__/**",
+      "!src/index.tsx",
+      "!src/serviceWorker.ts",
+      "!src/graphql/**",
+      "!src/**/*.d.ts"
+    ],
+    "watchPathIgnorePatterns": [
+      "<rootDir>/node_modules*",
+      "<rootDir>/cypress/",
+      "<rootDir>/package.json",
+      "<rootDir>/src/graphql/.+?types",
+      "<rootDir>/coverage/",
+      "<rootDir>/public/",
+      "<rootDir>/.vim/"
+    ]
+  }
+}
